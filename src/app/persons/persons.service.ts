@@ -26,14 +26,14 @@ export class PersonsService {
         map(
           respondata => {
             return respondata.results.map(
-              character => console.log(character.name)
+              hero => hero.name
             );
           }
         )
       )
       .subscribe(
         transformeddata => {
-          console.log(transformeddata);
+          this.personChanged.next(transformeddata);
         }
       );
   }
