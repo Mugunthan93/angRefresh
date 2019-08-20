@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PersonsService } from './persons.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-persons',
@@ -9,14 +10,29 @@ import { PersonsService } from './persons.service';
 export class PersonsComponent implements OnInit {
 
   personList: string[];
+  private subscriptionList: Subscription;
 
   constructor(
-    personService: PersonsService
+    private personService: PersonsService
   ) {
-    this.personList = personService.persons;
   }
 
   ngOnInit() {
+    this.personList = this.personService.persons;
+    this.personService.fetchPerson();
+    this.subscriptionList = this.personService.personChanged.subscribe(
+      persons => {
+        this.personList = persons;
+      }
+    );
+  }
+
+  onRemovePerson(personName: string) {
+    this.personService.removePerson(personName);
+  }
+
+  ngOnDestroy() {
+    this.subscriptionList.unsubscribe();
   }
 
 

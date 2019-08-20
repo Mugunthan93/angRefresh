@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { PersonsService } from '../persons.service';
 
 @Component({
   selector: 'app-person-input',
@@ -7,25 +8,21 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class PersonInputComponent implements OnInit {
 
-  @Output() personCreate = new EventEmitter<string>();
+
 
   enteredPersonName = '';
 
-  constructor() { }
+  constructor(
+    private prsService: PersonsService
+  ) { }
 
   ngOnInit() {
   }
 
-  onCreatePerson(personName: string) {
-    console.log("person created using local ref!!" + personName);
-  }
-
-  onCreatePerson1() {
+  onCreatePerson() {
     console.log("person created using two way bind!!" + this.enteredPersonName);
-    this.personCreate.emit(this.enteredPersonName);
+    this.prsService.addPerson(this.enteredPersonName);
     this.enteredPersonName = '';
   }
-
-
 
 }
