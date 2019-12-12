@@ -3,16 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { PersonsComponent } from './persons/persons.component';
-import { PersonInputComponent } from './persons/person-input/person-input.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ChildComponent } from './child/child.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersonsComponent,
-    PersonInputComponent
+    ChildComponent
   ],
   imports: [
     BrowserModule,

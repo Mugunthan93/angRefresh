@@ -1,2 +1,70 @@
-<a routerLink="/">Home</a> | <a routerLink="/input">Input</a>
-<router-outlet></router-outlet>
+<h1>Template syntax</h1>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-6">
+      <div>
+        <h3>Interpolation & Template expressions</h3>
+        <div>
+          <!-- Interpolation & Template expressions-->
+          <div>
+            <!--variable-->
+            <div>{{interpolation}}</div>
+
+            <!--function-->
+            <div>{{getVal()}}</div>
+
+            <!--property-->
+            <div><input type="text" value="{{property}}"></div>
+
+            <!--operations-->
+            <div>{{1 + 1 + getVal()}}</div>
+          </div>
+        </div>
+
+
+        <!-- Template context -->
+        <h3>Template context</h3>
+        <div>
+          <!--variable-->
+          <div>
+            <img [src]="imgSrc" width="200" height="100">
+          </div>
+
+          <!--template input variable-->
+          <div *ngFor="let num of numbers">{{num}}</div>
+
+          <!--template reference variable-->
+          <input type="text" #customInput>
+          <button (click)="show(customInput)">Show</button>
+          <div>{{customOutput}}</div>
+
+        </div>
+
+        <!--Template statement-->
+        <h3>Template Statement</h3>
+
+        <div>
+          <div>
+            <button (click)="show(customInput)">Show</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <!-- @input decorator -->
+
+      <h3>Child component</h3>
+      <app-child [childAlias]="parentValue" (childEvent)="parentFunction($event)"></app-child>
+
+      <ul>
+        <li *ngFor="let item of items">{{item}}</li>
+      </ul>
+    </div>
+
+
+
+  </div>
+</div>
